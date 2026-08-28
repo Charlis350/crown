@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="288" viewBox="0 0 512 288" role="img" aria-label="FNAF 3">
+  <defs>
+    <linearGradient id="g1071876368bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1d4ed8"/>
+      <stop offset=".58" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#fef08a"/>
+    </linearGradient>
+    <filter id="g1071876368shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="9" flood-color="#000" flood-opacity=".38"/>
+    </filter>
+    <pattern id="g1071876368dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="2" fill="#fff" opacity=".2"/>
+    </pattern>
+  </defs>
+  <rect width="512" height="288" rx="28" fill="url(#g1071876368bg)"/>
+  <rect width="512" height="288" rx="28" fill="url(#g1071876368dots)" opacity=".7"/>
+  <circle cx="430" cy="12" r="138" fill="#fff" opacity=".16"/>
+  <circle cx="64" cy="298" r="166" fill="#000" opacity=".2"/>
+  <g filter="url(#g1071876368shadow)" transform="translate(18 -6) scale(.9)">
+    <circle cx="318" cy="156" r="80" fill="#7c3f1d" stroke="#111827" stroke-width="12"/><circle cx="258" cy="92" r="33" fill="#7c3f1d" stroke="#111827" stroke-width="10"/><circle cx="378" cy="92" r="33" fill="#7c3f1d" stroke="#111827" stroke-width="10"/><circle cx="290" cy="147" r="14" fill="#fff"/><circle cx="346" cy="147" r="14" fill="#fff"/><circle cx="290" cy="149" r="6" fill="#111827"/><circle cx="346" cy="149" r="6" fill="#111827"/><ellipse cx="318" cy="188" rx="40" ry="27" fill="#f7d7a8" stroke="#111827" stroke-width="8"/><path d="M302 194h32" stroke="#111827" stroke-width="8" stroke-linecap="round"/><rect x="285" y="64" width="66" height="18" rx="6" fill="#111827"/>
+  </g>
+  <rect x="25" y="24" width="168" height="38" rx="19" fill="#111827" opacity=".86"/>
+  <text x="43" y="50" font-size="18" font-family="Arial Black, Arial, sans-serif" fill="#fef3c7" letter-spacing="1.5">CROWN GAMES</text>
+  <rect x="32" y="78" width="130" height="72" rx="18" fill="#f8fafc" stroke="#111827" stroke-width="8" opacity=".92"/>
+  <text x="97" y="126" text-anchor="middle" font-size="42" font-family="Arial Black, Arial, sans-serif" fill="#111827">F3</text>
+  <text x="34" y="188" font-size="62" font-family="Impact, Arial Black, sans-serif" fill="#fff" stroke="#111827" stroke-width="7" paint-order="stroke" letter-spacing=".5">FNAF 3</text>
+</svg>

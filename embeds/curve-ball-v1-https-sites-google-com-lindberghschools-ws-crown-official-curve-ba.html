@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curve Ball V1 - Crown Games</title>
+    <!-- Tailwind CSS CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #0a0c10; /* BG_COLOR */
+        }
+        #game-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px; /* Max desktop width */
+            aspect-ratio: 1200 / 900; /* Maintain aspect ratio */
+            background-color: #0a0c10; /* BG_COLOR */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        #hud {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex; /* Use flex for horizontal distribution */
+            justify-content: space-between; /* Space out items */
+            padding: 1rem; /* Add some padding */
+            color: #e6e6f0; /* TEXT_COLOR */
+            font-size: 1.2rem; /* Slightly smaller for responsiveness */
+            text-align: center;
+            box-sizing: border-box; /* Include padding in width */
+            z-index: 50; /* Ensure HUD is below menus but above canvas */
+        }
+        #menu, #message-box, #game-over-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #e6e6f0; /* TEXT_COLOR */
+            font-size: 1.5rem;
+            text-align: center;
+            background-color: rgba(10, 12, 16, 0.9); /* Semi-transparent overlay */
+            z-index: 100; /* Ensure it's on top */
+        }
+        #game-over-screen {
+            z-index: 90;
+        }
+        #message-box {
+            background-color: rgba(10, 12, 16, 0.7);
+            z-index: 80;
+            cursor: pointer; /* Indicate it's clickable */
+        }
+        .menu-item {
+            padding: 1rem 2rem;
+            margin: 0.5rem 0;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.2s, color 0.2s;
+            font-size: 1.8rem;
+            color: #c8c8c8; /* MENU_ITEM_COLOR */
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff; /* MENU_HIGHLIGHT_COLOR */
+        }
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+        .game-over-text {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .restart-button {
+            padding: 1rem 2rem;
+            background-color: #40ffA0; /* PADDLE_COLOR_PLAYER */
+            color: #0a0c10;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            margin-top: 1.5rem;
+        }
+        .restart-button:hover {
+            background-color: #2ad085;
+        }
+
+        /* Responsive font sizing for smaller screens */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            .menu-item {
+                font-size: 1.4rem;
+                padding: 0.75rem 1.5rem;
+            }
+            .game-over-text {
+                font-size: 2rem;
+            }
+            .restart-button {
+                font-size: 1.2rem;
+                padding: 0.75rem 1.5rem;
+            }
+            #hud {
+                font-size: 1rem;
+                padding: 0.75rem;
+            }
+        }
+        /* Utility class to hide elements */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+<script>
+window.CROWN_GAMES_EMBED = true;
+window.maeExportApis_ = window.maeExportApis_ || function(){};
+try {
+  if (window.parent && !window.parent.maeExportApis_) {
+    window.parent.maeExportApis_ = function(){};
+  }
+} catch (error) {}
+</script>
+<style>
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+}
+iframe, canvas, ruffle-player, #gameContainer, #unity-container, #unity-canvas {
+  width: 100%;
+  height: 100%;
+}
+</style>
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="hud" class="hidden">
+            <span id="level-display">Level: 1</span>
+            <span id="score-display">Score: 0</span>
+            <span id="player-lives-display">Your Lives: 3</span>
+            <span id="ai-lives-display">AI Lives: 3</span>
+        </div>
+        <div id="menu">
+            <h1 class="title">Curveball 3D</h1>
+            <div id="difficulty-options">
+                <div class="menu-item" data-difficulty="easy">Easy</div>
+                <div class="menu-item" data-difficulty="medium">Medium</div>
+                <div class="menu-item" data-difficulty="pro">Pro</div>
+                <div class="menu-item" data-difficulty="god">God</div>
+            </div>
+        </div>
+        <div id="message-box" class="hidden">Click to Serve!</div>
+        <div id="game-over-screen" class="hidden">
+            <div class="game-over-text">GAME OVER! Final Score: <span id="final-score">0</span></div>
+            <button class="restart-button" id="restartGameButton">Click to Restart</button>
+            <div class="text-lg mt-4">Press ESC to return to menu</div>
+        </div>
+    </div>
+
+    <script>
+        // Game Configuration (These constants now represent the *target aspect ratio*
+        // and base values, not fixed screen dimensions for drawing)
+        const TARGET_SCREEN_W = 1200;
+        const TARGET_SCREEN_H = 900;
+        const FPS = 120;
+
+        const X_BOUND = 2.0;
+        const Y_BOUND = 1.5;
+        const Z_NEAR = 1.5;
+        const Z_FAR = 7.0;
+
+        const FOV = 400.0; // This value is still a fixed perspective constant
+        const BALL_RADIUS = 0.22;
+        const SIDE_SPEED = 2.0;
+
+        const PADDLE_W = 0.4;
+        const PADDLE_H = 0.32;
+
+        const SPIN_IMPART_FACTOR = 0.00005;
+        const SPIN_DECAY = 0.99;
+        const CURVE_STRENGTH = 2.8;
+
+        // Difficulty Presets
+        const BASE_SPEEDS = {
+            easy: 3.0,
+            medium: 7.0,
+            pro: 15.0,
+            god: 20.0,
+        };
+        const PADDLE_SHRINK_FACTORS = {
+            easy: 1.0,
+            medium: 0.95,
+            pro: 0.8,
+            god: 0.6,
+        };
+        const AI_ACCURACIES = {
+            easy: 0.6,
+            medium: 0.3,
+            pro: 0.1,
+            god: 0.02,
+        };
+        const AI_PADDLE_SPEEDS = {
+            easy: 1.5,
+            medium: 3.0,
+            pro: 5.0,
+            god: 8.0,
+        };
+
+        const BG_COLOR = '#0a0c10';
+        const LINE_COLOR = '#23b4ff';
+        const BALL_COLOR = '#ffffff';
+        const PADDLE_COLOR_PLAYER = '#28ffA0';
+        const PADDLE_COLOR_AI = '#ff6428';
+        const TEXT_COLOR = '#e6e6f0';
+
+        const PLAYER_LIVES_START = 3;
+        const AI_LIVES_START = 3;
+
+        // Game States
+        const GAME_STATE_MENU = 0;
+        const GAME_STATE_SERVE = 1;
+        const GAME_STATE_PLAYING = 2;
+        const GAME_STATE_GAME_OVER = 3;
+
+        // Global Game Variables
+        let canvas, ctx;
+        let playerPaddle, aiPaddle, ball;
+        let level = 1;
+        let score = 0;
+        let playerLives = PLAYER_LIVES_START;
+        let aiLives = AI_LIVES_START;
+        let currentGameState = GAME_STATE_MENU;
+
+        // Current difficulty settings
+        let currentBaseSpeed = BASE_SPEEDS.medium;
+        let currentPaddleShrinkFactor = PADDLE_SHRINK_FACTORS.medium;
+        let currentAiAccuracy = AI_ACCURACIES.medium;
+        let currentAiPaddleSpeed = AI_PADDLE_SPEEDS.medium;
+
+        let mouseX = TARGET_SCREEN_W / 2; // Mouse position in world-scaled coordinates
+        let mouseY = TARGET_SCREEN_H / 2;
+        let lastTimestamp = 0;
+
+        // DOM element references
+        const hudElement = document.getElementById('hud');
+        const menuElement = document.getElementById('menu');
+        const messageBoxElement = document.getElementById('message-box');
+        const gameOverScreenElement = document.getElementById('game-over-screen');
+        const restartGameButton = document.getElementById('restartGameButton');
+        const difficultyOptionsDiv = document.getElementById('difficulty-options');
+
+
+        // --- Helper Functions ---
+        // Updated worldToScreen to use current canvas dimensions for scaling
+        function worldToScreen(x, y, z) {
+            z = Math.max(0.05, z);
+            const scale = FOV / z;
+            // Use current canvas dimensions (canvas.width, canvas.height)
+            const sx = canvas.width * 0.5 + x * scale;
+            const sy = canvas.height * 0.5 - y * scale; // Invert Y for screen coordinates
+            return { x: sx, y: sy, scale: scale };
+        }
+
+        function clamp(val, lo, hi) {
+            return Math.max(lo, Math.min(hi, val));
+        }
+
+        // --- Game Classes ---
+        class Ball {
+            constructor() {
+                this.reset(1, 1);
+            }
+
+            reset(direction = 1, level = 1) {
+                this.x = 0.0;
+                this.y = 0.0;
+                this.z = direction > 0 ? Z_NEAR + 0.8 : Z_FAR - 0.8;
+                
+                const speed = currentBaseSpeed + (level - 1) * 0.75;
+                this.vz = speed * direction;
+                this.vx = (Math.random() * 2 - 1) * SIDE_SPEED * 0.5;
+                this.vy = (Math.random() * 2 - 1) * SIDE_SPEED * 0.5;
+                this.spin_x = 0.0;
+                this.spin_y = 0.0;
+            }
+
+            update(dt) {
+                this.vx += this.spin_x * CURVE_STRENGTH * dt;
+                this.vy += this.spin_y * CURVE_STRENGTH * dt;
+
+                this.x += this.vx * dt;
+                this.y += this.vy * dt;
+                this.z += this.vz * dt;
+
+                // Bounce on x/y tunnel walls
+                if (Math.abs(this.x) + BALL_RADIUS > X_BOUND) {
+                    this.x = clamp(this.x, -X_BOUND + BALL_RADIUS, X_BOUND - BALL_RADIUS);
+                    this.vx *= -1.0;
+                    this.spin_x *= 0.8;
+                    this.spin_y *= 0.8;
+                }
+
+                if (Math.abs(this.y) + BALL_RADIUS > Y_BOUND) {
+                    this.y = clamp(this.y, -Y_BOUND + BALL_RADIUS, Y_BOUND - BALL_RADIUS);
+                    this.vy *= -1.0;
+                    this.spin_x *= 0.8;
+                    this.spin_y *= 0.8;
+                }
+
+                this.spin_x *= SPIN_DECAY;
+                this.spin_y *= SPIN_DECAY;
+            }
+
+            draw() {
+                const { x: sx, y: sy, scale: screenScale } = worldToScreen(this.x, this.y, this.z);
+                const r = Math.max(1, Math.floor(BALL_RADIUS * screenScale));
+                ctx.beginPath();
+                ctx.arc(sx, sy, r, 0, Math.PI * 2);
+                ctx.fillStyle = BALL_COLOR;
+                ctx.fill();
+            }
+
+            limitSpeed(level) {
+                const targetSpeed = currentBaseSpeed + (level - 1) * 0.75;
+                const currentSpeed = Math.sqrt(this.vx**2 + this.vy**2 + this.vz**2);
+                if (currentSpeed > 1e-6) {
+                    const scale = targetSpeed / currentSpeed;
+                    this.vx *= scale;
+                    this.vy *= scale;
+                    this.vz *= scale;
+                }
+            }
+        }
+
+        class Paddle {
+            constructor(isPlayer = true) {
+                this.w = PADDLE_W;
+                this.h = PADDLE_H;
+                this.x = 0.0;
+                this.y = 0.0;
+                this.vx = 0.0;
+                this.vy = 0.0;
+                this.isPlayer = isPlayer;
+                this.color = isPlayer ? PADDLE_COLOR_PLAYER : PADDLE_COLOR_AI;
+                this.x_prev = 0.0; // For player paddle velocity calculation
+                this.y_prev = 0.0; // For player paddle velocity calculation
+            }
+
+            setLevel(level) {
+                const shrink = currentPaddleShrinkFactor ** (level - 1);
+                this.w = PADDLE_W * shrink;
+                this.h = PADDLE_H * shrink;
+            }
+
+            update(dt, ball = null, level = 1) {
+                let target_x = this.x;
+                let target_y = this.y;
+
+                if (this.isPlayer) { // Player Paddle (Mouse Control)
+                    // Map mouseX/mouseY (which are in canvas coordinates) back to world coordinates
+                    target_x = (mouseX - canvas.width * 0.5) * (Z_NEAR / FOV);
+                    target_y = -(mouseY - canvas.height * 0.5) * (Z_NEAR / FOV); // Invert Y for world coords
+
+                    // Store previous position before updating current position
+                    this.x_prev = this.x;
+                    this.y_prev = this.y;
+                    this.x = target_x;
+                    this.y = target_y;
+
+                    // Calculate velocity for spin
+                    if (dt > 0) {
+                        this.vx = (this.x - this.x_prev) / dt;
+                        this.vy = (this.y - this.y_prev) / dt;
+                    } else {
+                        this.vx = 0.0;
+                        this.vy = 0.0;
+                    }
+
+                } else { // AI Paddle
+                    if (ball && ball.vz > 0) { // AI only acts if ball is coming towards its side
+                        const offset_x = (Math.random() * 2 - 1) * currentAiAccuracy;
+                        const offset_y = (Math.random() * 2 - 1) * currentAiAccuracy;
+                        
+                        target_x = ball.x + offset_x;
+                        target_y = ball.y + offset_y;
+
+                        const dx_target = target_x - this.x;
+                        const dy_target = target_y - this.y;
+                        
+                        const effectiveAiSpeed = currentAiPaddleSpeed + (level - 1) * 0.5;
+                        const moveFactor = 5.0; 
+                        
+                        let desired_vx = dx_target * moveFactor;
+                        let desired_vy = dy_target * moveFactor;
+
+                        const currentAiTotalSpeed = Math.sqrt(desired_vx**2 + desired_vy**2);
+                        if (currentAiTotalSpeed > effectiveAiSpeed) {
+                            const scaleFactor = effectiveAiSpeed / currentAiTotalSpeed;
+                            this.vx = desired_vx * scaleFactor;
+                            this.vy = desired_vy * scaleFactor;
+                        } else {
+                            this.vx = desired_vx;
+                            this.vy = desired_vy;
+                        }
+                        
+                        this.x += this.vx * dt;
+                        this.y += this.vy * dt;
+                    } else { // If ball is moving towards player, AI paddle stops or centers
+                        const effectiveAiSpeed = currentAiPaddleSpeed * 0.5;
+                        const dx_center = 0.0 - this.x;
+                        const dy_center = 0.0 - this.y;
+                        const moveFactorCenter = 3.0;
+
+                        let desired_vx = dx_center * moveFactorCenter;
+                        let desired_vy = dy_center * moveFactorCenter;
+
+                        const currentAiTotalSpeed = Math.sqrt(desired_vx**2 + desired_vy**2);
+                        if (currentAiTotalSpeed > effectiveAiSpeed) {
+                            const scaleFactor = effectiveAiSpeed / currentAiTotalSpeed;
+                            this.vx = desired_vx * scaleFactor;
+                            this.vy = desired_vy * scaleFactor;
+                        } else {
+                            this.vx = desired_vx;
+                            this.vy = desired_vy;
+                        }
+                        
+                        this.x += this.vx * dt;
+                        this.y += this.vy * dt;
+                    }
+                }
+
+                // Clamp bounds to keep paddle within the tunnel
+                this.x = clamp(this.x, -X_BOUND + this.w * 0.5, X_BOUND - this.w * 0.5);
+                this.y = clamp(this.y, -Y_BOUND + this.h * 0.5, Y_BOUND - this.h * 0.5);
+            }
+
+            collideBall(ball, currentLevel) {
+                const z_plane = this.isPlayer ? Z_NEAR : Z_FAR;
+
+                let collision_in_z = false;
+                if (this.isPlayer) { // Player paddle
+                    if (ball.vz < 0 && ball.z - BALL_RADIUS <= z_plane) {
+                        collision_in_z = true;
+                    }
+                } else { // AI paddle
+                    if (ball.vz > 0 && ball.z + BALL_RADIUS >= z_plane) {
+                        collision_in_z = true;
+                    }
+                }
+
+                if (collision_in_z) {
+                    if (Math.abs(ball.x - this.x) <= (this.w * 0.5 + BALL_RADIUS) &&
+                        Math.abs(ball.y - this.y) <= (this.h * 0.5 + BALL_RADIUS)) {
+                        
+                        // Ball hit!
+                        if (this.isPlayer) {
+                            ball.z = z_plane + BALL_RADIUS + 0.01;
+                        } else {
+                            ball.z = z_plane - BALL_RADIUS - 0.01;
+                        }
+                        
+                        ball.vz *= -1.0;
+
+                        const offx = (ball.x - this.x) / (this.w * 0.5 + BALL_RADIUS);
+                        const offy = (ball.y - this.y) / (this.h * 0.5 + BALL_RADIUS);
+                        ball.vx += offx * 1.5;
+                        ball.vy += offy * 1.5;
+
+                        if (this.isPlayer) {
+                            ball.spin_x += this.vx * SPIN_IMPART_FACTOR;
+                            ball.spin_y += this.vy * SPIN_IMPART_FACTOR;
+                        } else {
+                            ball.spin_x *= 0.1;
+                            ball.spin_y *= 0.1;
+                        }
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            draw() {
+                const z_plane = this.isPlayer ? Z_NEAR : Z_FAR;
+                const corners = [
+                    { x: this.x - this.w * 0.5, y: this.y - this.h * 0.5, z: z_plane },
+                    { x: this.x + this.w * 0.5, y: this.y - this.h * 0.5, z: z_plane },
+                    { x: this.x + this.w * 0.5, y: this.y + this.h * 0.5, z: z_plane },
+                    { x: this.x - this.w * 0.5, y: this.y + this.h * 0.5, z: z_plane },
+                ];
+                
+                ctx.beginPath();
+                let first = true;
+                for (const corner of corners) {
+                    const { x: sx, y: sy } = worldToScreen(corner.x, corner.y, corner.z);
+                    if (first) {
+                        ctx.moveTo(sx, sy);
+                        first = false;
+                    } else {
+                        ctx.lineTo(sx, sy);
+                    }
+                }
+                ctx.closePath();
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        }
+
+        // --- Drawing Functions ---
+        function drawTunnel() {
+            const rings = 15;
+            for (let i = 0; i < rings; i++) {
+                const z_ring = Z_NEAR + (Z_FAR - Z_NEAR) * (i / (rings - 1));
+                
+                const corners = [
+                    { x: -X_BOUND, y: -Y_BOUND, z: z_ring },
+                    { x: X_BOUND, y: -Y_BOUND, z: z_ring },
+                    { x: X_BOUND, y: Y_BOUND, z: z_ring },
+                    { x: -X_BOUND, y: Y_BOUND, z: z_ring },
+                ];
+                
+                ctx.beginPath();
+                let first = true;
+                for (const corner of corners) {
+                    const { x: sx, y: sy } = worldToScreen(corner.x, corner.y, corner.z);
+                    if (first) {
+                        ctx.moveTo(sx, sy);
+                        first = false;
+                    } else {
+                        ctx.lineTo(sx, sy);
+                    }
+                }
+                ctx.closePath();
+                ctx.strokeStyle = LINE_COLOR;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+
+            // Connecting edges
+            const edgeCoords = [
+                { x: -X_BOUND, y: -Y_BOUND }, { x: X_BOUND, y: -Y_BOUND },
+                { x: X_BOUND, y: Y_BOUND }, { x: -X_BOUND, y: Y_BOUND },
+            ];
+
+            for (const edge of edgeCoords) {
+                const p1 = worldToScreen(edge.x, edge.y, Z_NEAR);
+                const p2 = worldToScreen(edge.x, edge.y, Z_FAR);
+                ctx.beginPath();
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.strokeStyle = LINE_COLOR;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+        }
+
+        function drawHud() {
+            document.getElementById('level-display').innerText = `Level: ${level}`;
+            document.getElementById('score-display').innerText = `Score: ${score}`;
+            document.getElementById('player-lives-display').innerText = `Your Lives: ${playerLives}`;
+            document.getElementById('ai-lives-display').innerText = `AI Lives: ${aiLives}`;
+        }
+
+        // --- Game Logic ---
+        function resetGame(startState = GAME_STATE_SERVE) {
+            level = 1;
+            score = 0;
+            playerLives = PLAYER_LIVES_START;
+            aiLives = AI_LIVES_START;
+            
+            playerPaddle.setLevel(level);
+            aiPaddle.setLevel(level);
+            ball.reset(1, level); // Ball starts heading towards AI
+
+            currentGameState = startState;
+            updateUIForGameState();
+        }
+
+        function updateUIForGameState() {
+            // Hide all UI elements first
+            hudElement.classList.add('hidden');
+            menuElement.classList.add('hidden');
+            messageBoxElement.classList.add('hidden');
+            gameOverScreenElement.classList.add('hidden');
+
+            // Then show only the relevant ones
+            switch (currentGameState) {
+                case GAME_STATE_MENU:
+                    menuElement.classList.remove('hidden');
+                    break;
+                case GAME_STATE_SERVE:
+                    hudElement.classList.remove('hidden');
+                    messageBoxElement.classList.remove('hidden');
+                    break;
+                case GAME_STATE_PLAYING:
+                    hudElement.classList.remove('hidden');
+                    break;
+                case GAME_STATE_GAME_OVER:
+                    hudElement.classList.remove('hidden');
+                    gameOverScreenElement.classList.remove('hidden');
+                    document.getElementById('final-score').innerText = score;
+                    break;
+            }
+        }
+
+        function gameLoop(timestamp) {
+            if (!lastTimestamp) lastTimestamp = timestamp;
+            const dt = (timestamp - lastTimestamp) / 1000.0;
+            lastTimestamp = timestamp;
+
+            // Clear canvas
+            ctx.fillStyle = BG_COLOR;
+            ctx.fillRect(0, 0, canvas.width, canvas.height); // Use current canvas dimensions
+
+            if (currentGameState === GAME_STATE_PLAYING) {
+                playerPaddle.update(dt, ball, level);
+                aiPaddle.update(dt, ball, level);
+                ball.update(dt);
+
+                // Collisions
+                if (playerPaddle.collideBall(ball, level)) {
+                    ball.limitSpeed(level);
+                    score += 10;
+                }
+                if (aiPaddle.collideBall(ball, level)) {
+                    ball.limitSpeed(level);
+                }
+
+                // Check for misses
+                if (ball.z < Z_NEAR - BALL_RADIUS * 2) { // Player missed
+                    playerLives--;
+                    if (playerLives <= 0) {
+                        currentGameState = GAME_STATE_GAME_OVER;
+                    } else {
+                        currentGameState = GAME_STATE_SERVE;
+                        ball.reset(1, level); // Player serves again
+                    }
+                    updateUIForGameState();
+                } else if (ball.z > Z_FAR + BALL_RADIUS * 2) { // AI missed
+                    aiLives--;
+                    if (aiLives <= 0) {
+                        score += 500 * level;
+                        level++;
+                        aiLives = AI_LIVES_START;
+                        playerPaddle.setLevel(level);
+                        aiPaddle.setLevel(level);
+                        currentGameState = GAME_STATE_SERVE;
+                        ball.reset(1, level); // Player serves next
+                    } else {
+                        score += 100;
+                        currentGameState = GAME_STATE_SERVE;
+                        ball.reset(1, level); // Player serves next (changed from -1)
+                    }
+                    updateUIForGameState();
+                }
+            } else if (currentGameState === GAME_STATE_MENU) {
+                // Menu is drawn by drawMenu function and event listener
+            }
+
+            // Drawing for game states where game elements are visible
+            if (currentGameState !== GAME_STATE_MENU) {
+                drawTunnel();
+                playerPaddle.draw();
+                aiPaddle.draw();
+                ball.draw();
+                drawHud();
+            } else {
+                // When in menu state, we still need to explicitly draw the menu.
+                // mouseX and mouseY are already updated by mousemove event listener
+                // We pass current mouse position to drawMenu to handle hover effects
+                drawMenu(canvas, difficultyOptionsDiv.children, { x: mouseX, y: mouseY });
+            }
+            
+            requestAnimationFrame(gameLoop);
+        }
+
+        // --- Event Listeners and Initialization ---
+        window.onload = () => {
+            canvas = document.getElementById('gameCanvas');
+            ctx = canvas.getContext('2d');
+
+            const gameContainer = document.getElementById('game-container');
+            const resizeCanvas = () => {
+                // Set canvas's drawing buffer size to match its display size
+                canvas.width = gameContainer.offsetWidth;
+                canvas.height = gameContainer.offsetHeight;
+                // We keep TARGET_SCREEN_W and TARGET_SCREEN_H for aspect ratio consistency
+                // but use canvas.width/height for actual drawing calculations.
+            };
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas(); // Initial resize
+
+            playerPaddle = new Paddle(true);
+            aiPaddle = new Paddle(false);
+            ball = new Ball();
+
+            // Menu interaction
+            difficultyOptionsDiv.addEventListener('click', (event) => {
+                const target = event.target.closest('.menu-item');
+                if (target) {
+                    const difficulty = target.dataset.difficulty;
+                    currentBaseSpeed = BASE_SPEEDS[difficulty];
+                    currentPaddleShrinkFactor = PADDLE_SHRINK_FACTORS[difficulty];
+                    currentAiAccuracy = AI_ACCURACIES[difficulty];
+                    currentAiPaddleSpeed = AI_PADDLE_SPEEDS[difficulty];
+                    resetGame(GAME_STATE_SERVE); // Start game after difficulty selection
+                }
+            });
+
+            // NEW: Add click listener to the messageBoxElement for serving
+            messageBoxElement.addEventListener('click', () => {
+                if (currentGameState === GAME_STATE_SERVE) {
+                    currentGameState = GAME_STATE_PLAYING;
+                    updateUIForGameState();
+                }
+            });
+
+            restartGameButton.addEventListener('click', () => {
+                resetGame(GAME_STATE_SERVE);
+            });
+
+            // Mouse movement for player paddle
+            canvas.addEventListener('mousemove', (event) => {
+                const rect = canvas.getBoundingClientRect();
+                // Scale mouse position relative to canvas's *current drawing buffer size*
+                mouseX = (event.clientX - rect.left) * (canvas.width / rect.width);
+                mouseY = (event.clientY - rect.top) * (canvas.height / rect.height);
+            });
+
+            // ESC key to return to menu
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    if (currentGameState !== GAME_STATE_MENU) {
+                        currentGameState = GAME_STATE_MENU;
+                        resetGame(GAME_STATE_MENU); // Reset game to menu state
+                    }
+                    updateUIForGameState();
+                }
+            });
+
+            // Initial UI setup - IMPORTANT: Call this after all elements are defined and listeners are set
+            updateUIForGameState();
+            requestAnimationFrame(gameLoop); // Start the animation loop
+        };
+        
+        // --- Custom drawMenu for HTML elements ---
+        // This function is purely for applying hover effects to HTML menu items.
+        // It does not draw anything to the canvas.
+        function drawMenu(canvasElement, menuItemsDiv, mousePos) {
+            Array.from(menuItemsDiv).forEach(itemElement => {
+                const rect = itemElement.getBoundingClientRect();
+                // Convert mousePos (canvas coords) to document coords for HTML element check
+                const mouseXDoc = mousePos.x + canvasElement.getBoundingClientRect().left;
+                const mouseYDoc = mousePos.y + canvasElement.getBoundingClientRect().top;
+
+                if (mouseXDoc >= rect.left && mouseXDoc <= rect.right &&
+                    mouseYDoc >= rect.top && mouseYDoc <= rect.bottom) {
+                    itemElement.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                    itemElement.style.color = '#ffffff';
+                } else {
+                    itemElement.style.backgroundColor = '';
+                    itemElement.style.color = '#c8c8c8';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

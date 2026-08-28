@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#15120d">
+  <meta name="application-name" content="Crown Games">
+  <meta name="apple-mobile-web-app-title" content="Crown Games">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <title>Play - Crown Games</title>
+  <link rel="icon" href="favicon.ico?v=20260518-mobile-final" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=20260518-mobile-final">
+  <link rel="icon" href="assets/site-icon.svg?v=20260518-mobile-final" type="image/svg+xml">
+  <link rel="icon" href="favicon.png?v=20260518-mobile-final" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/site-icon-180.png?v=20260518-mobile-final">
+  <link rel="manifest" href="site.webmanifest?v=20260518-mobile-final">
+  <link rel="preload" href="data/games.js?v=20260518-mobile-final" as="script">
+  <link rel="preload" href="assets/crown-logo.svg?v=20260518-mobile-final" as="image">
+  <link rel="stylesheet" href="styles.css?v=20260518-mobile-final">
+</head>
+<body class="play-page">
+  <header class="playbar">
+    <a href="index.html" class="back">&lt; Crown Games</a>
+    <div><strong id="playTitle">Loading...</strong><span id="playMeta"></span></div>
+    <nav class="play-actions" aria-label="Game controls">
+      <button id="favoriteToggle" class="play-action favorite-toggle" type="button" aria-pressed="false">Favorite</button>
+      <button id="reloadGame" class="play-action" type="button">Reload</button>
+      <button id="fullscreenToggle" class="play-action" type="button">Fullscreen</button>
+      <button id="fitToggle" class="play-action fit-toggle" type="button">Fill</button>
+      <button id="settingsButton" class="play-action settings-button" type="button" aria-haspopup="dialog">Settings</button>
+    </nav>
+  </header>
+  <main class="player-shell">
+    <div id="player" class="player fit-mode"></div>
+    <div id="gameLoader" class="game-loader is-active" aria-live="polite" aria-label="Loading game">
+      <div class="loader-card">
+        <span class="loader-ring"></span>
+        <span class="loader-icon">
+          <img id="loaderIcon" src="assets/crown-logo.svg" alt="">
+        </span>
+        <strong id="loaderTitle">Loading Crown Game</strong>
+        <small>getting the game ready</small>
+      </div>
+    </div>
+  </main>
+  <footer class="credit-footer">
+    <p>&copy; 2026 Crown Games. Made by Wes &amp; Mason.</p>
+  </footer>
+  <script src="settings.js?v=20260518-mobile-final"></script>
+  <script src="data/games.js?v=20260518-mobile-final"></script>
+  <script src="play.js?v=20260518-mobile-final"></script>
+</body>
+</html>

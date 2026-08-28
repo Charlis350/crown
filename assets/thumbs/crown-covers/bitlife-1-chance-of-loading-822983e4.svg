@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="288" viewBox="0 0 512 288" role="img" aria-label="Bitlife (1% chance of loading)">
+  <defs>
+    <linearGradient id="g2183758820bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#be185d"/>
+      <stop offset=".58" stop-color="#fb7185"/>
+      <stop offset="1" stop-color="#fef3c7"/>
+    </linearGradient>
+    <filter id="g2183758820shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="9" flood-color="#000" flood-opacity=".38"/>
+    </filter>
+    <pattern id="g2183758820dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="2" fill="#fff" opacity=".2"/>
+    </pattern>
+  </defs>
+  <rect width="512" height="288" rx="28" fill="url(#g2183758820bg)"/>
+  <rect width="512" height="288" rx="28" fill="url(#g2183758820dots)" opacity=".7"/>
+  <circle cx="430" cy="12" r="138" fill="#fff" opacity=".16"/>
+  <circle cx="64" cy="298" r="166" fill="#000" opacity=".2"/>
+  <g filter="url(#g2183758820shadow)" transform="translate(18 -6) scale(.9)">
+    <path d="M158 96l64 64 58-91 53 91 74-58-28 150H129z" fill="#facc15" stroke="#111827" stroke-width="13" stroke-linejoin="round"/><rect x="124" y="249" width="260" height="38" rx="12" fill="#f8fafc" stroke="#111827" stroke-width="10"/>
+  </g>
+  <rect x="25" y="26" width="151" height="34" rx="17" fill="#111827" opacity=".82"/>
+  <text x="43" y="49" font-size="18" font-family="Arial Black, Arial, sans-serif" fill="#fef3c7" letter-spacing="1.5">CROWN GAMES</text>
+  <text x="34" y="188" font-size="34" font-family="Impact, Arial Black, sans-serif" fill="#fff" stroke="#111827" stroke-width="7" paint-order="stroke" letter-spacing=".5">BITLIFE (1%</text><text x="34" y="225" font-size="34" font-family="Impact, Arial Black, sans-serif" fill="#fff" stroke="#111827" stroke-width="7" paint-order="stroke" letter-spacing=".5">CHANCE OF</text><text x="34" y="262" font-size="34" font-family="Impact, Arial Black, sans-serif" fill="#fff" stroke="#111827" stroke-width="7" paint-order="stroke" letter-spacing=".5">LOADING)</text>
+</svg>

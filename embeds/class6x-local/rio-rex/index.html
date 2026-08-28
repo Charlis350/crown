@@ -1,0 +1,43 @@
+<!-- Play on Poki -->
+<!DOCTYPE html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<title>Rio Rex - Crown Games</title>
+
+	<script>
+		window.config = {
+		loader: 'unity',
+		debug: false,
+		maxRatio: 16 / 9,
+		minRatio: 9 / 16,
+
+		title: 'Rio Rex',
+
+		thumbnail: 'e65ee3a5-b1c5-4003-abb8-b52cb215bd10.png',
+		numScreenshots: 4,
+
+		unityWebglBuildUrl: 'Build/webgl_poki4.json',
+		unityWebglLoaderUrl: 'patch/UnityLoader.js',
+
+		// **** Optional Settings ****
+		fileSize: 27,
+		loadingComments: ['Loading...'],
+		cachedDecompressedFileSizes: {
+			'webgl_poki4.asm.framework.unityweb':433811,
+			'webgl_poki4.asm.memory.unityweb':1602435,
+			'webgl_poki4.asm.code.unityweb':28367956,
+			'webgl_poki4.data.unityweb':30603172,
+		},
+		//
+	};
+	</script>
+</head>
+
+<body style="overflow:hidden;">
+	<script src="patch/master-loader.js"></script>
+</body>
+
+</html>

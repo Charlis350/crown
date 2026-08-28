@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="288" viewBox="0 0 512 288" role="img" aria-label="Get Away Shoot Out">
+  <defs>
+    <linearGradient id="g1833468661bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6d28d9"/>
+      <stop offset=".58" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#facc15"/>
+    </linearGradient>
+    <filter id="g1833468661shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="9" flood-color="#000" flood-opacity=".38"/>
+    </filter>
+    <pattern id="g1833468661dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="2" fill="#fff" opacity=".2"/>
+    </pattern>
+  </defs>
+  <rect width="512" height="288" rx="28" fill="url(#g1833468661bg)"/>
+  <rect width="512" height="288" rx="28" fill="url(#g1833468661dots)" opacity=".7"/>
+  <circle cx="430" cy="12" r="138" fill="#fff" opacity=".16"/>
+  <circle cx="64" cy="298" r="166" fill="#000" opacity=".2"/>
+  <g filter="url(#g1833468661shadow)" transform="translate(18 -6) scale(.9)">
+    <circle cx="374" cy="126" r="54" fill="none" stroke="#f8fafc" stroke-width="14" opacity=".75"/><path d="M374 52v148M300 126h148" stroke="#f8fafc" stroke-width="11" opacity=".75"/><path d="M83 244h245l47 34-47 34H83z" fill="#111827" opacity=".82"/><path d="M293 244l42-54h67l-38 72z" fill="#facc15"/>
+  </g>
+  <rect x="25" y="26" width="151" height="34" rx="17" fill="#111827" opacity=".82"/>
+  <text x="43" y="49" font-size="18" font-family="Arial Black, Arial, sans-serif" fill="#fef3c7" letter-spacing="1.5">CROWN GAMES</text>
+  <text x="34" y="188" font-size="45" font-family="Impact, Arial Black, sans-serif" fill="#fff" stroke="#111827" stroke-width="7" paint-order="stroke" letter-spacing=".5">GET AWAY SHOOT</text><text x="34" y="236" font-size="45" font-family="Impact, Arial Black, sans-serif" fill="#fff" stroke="#111827" stroke-width="7" paint-order="stroke" letter-spacing=".5">OUT</text>
+</svg>

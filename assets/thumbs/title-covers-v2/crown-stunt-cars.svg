@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Stunt Cars">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset=".55" stop-color="#60a5fa"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="16" stdDeviation="12" flood-color="#000" flood-opacity=".35"/>
+    </filter>
+    <clipPath id="round"><rect width="512" height="512" rx="82"/></clipPath>
+  </defs>
+  <g clip-path="url(#round)">
+    <rect width="512" height="512" fill="url(#bg)"/>
+    <circle cx="430" cy="76" r="138" fill="#fff" opacity=".14"/>
+    <circle cx="74" cy="446" r="160" fill="#000" opacity=".18"/>
+    <path d="M50 90c82 30 167 26 256-12s142-29 192 26v-154H50z" fill="#fff" opacity=".08"/>
+    <g filter="url(#shadow)" transform="translate(0 -16)">
+      
+      <path d="M78 342c58-74 106-112 178-112s121 38 178 112" fill="none" stroke="#15120d" stroke-width="20" stroke-linecap="round"/>
+      <path d="M146 276h220l34 70H112z" fill="#60a5fa" stroke="#15120d" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="165" cy="354" r="31" fill="#15120d"/><circle cx="347" cy="354" r="31" fill="#15120d"/>
+      <path d="M191 276l33-48h80l33 48" fill="#f97316" stroke="#15120d" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M252 404v-96" stroke="#fff" stroke-width="8" stroke-dasharray="22 18" stroke-linecap="round"/>
+    </g>
+    <rect x="0" y="358" width="512" height="154" fill="#090b10" opacity=".76"/>
+    <text x="256" y="402" text-anchor="middle" font-family="Impact, 'Arial Black', sans-serif" font-size="48" letter-spacing="1.4" fill="#f8fafc">STUNT CARS</text>
+    <rect x="19" y="19" width="474" height="474" rx="70" fill="none" stroke="#fff" stroke-width="8" opacity=".7"/>
+  </g>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 160" role="img" aria-label="Crown Games">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff08a"/>
+      <stop offset="0.45" stop-color="#f6c92d"/>
+      <stop offset="1" stop-color="#b46b09"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7cf585"/>
+      <stop offset="1" stop-color="#169145"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-30%" width="140%" height="170%">
+      <feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#000" flood-opacity=".28"/>
+    </filter>
+  </defs>
+  <rect x="6" y="9" width="528" height="142" rx="34" fill="#111"/>
+  <rect x="16" y="19" width="508" height="122" rx="27" fill="#191919"/>
+  <path d="M67 108h108l-13-58-30 29-24-43-24 43-30-29-13 58z" fill="url(#gold)" filter="url(#shadow)"/>
+  <path d="M54 116h120v17H54z" fill="#f3bd25"/>
+  <circle cx="84" cy="50" r="9" fill="#fff3a1"/>
+  <circle cx="132" cy="36" r="9" fill="#fff3a1"/>
+  <circle cx="180" cy="50" r="9" fill="#fff3a1"/>
+  <text x="211" y="73" font-family="Impact, 'Arial Black', sans-serif" font-size="51" letter-spacing="2" fill="#f8f8f8">CROWN</text>
+  <text x="210" y="122" font-family="Impact, 'Arial Black', sans-serif" font-size="50" letter-spacing="2" fill="url(#green)">GAMES</text>
+  <path d="M210 132h218" stroke="#f6c92d" stroke-width="5" stroke-linecap="round"/>
+</svg>

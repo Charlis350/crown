@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="288" viewBox="0 0 512 288" role="img" aria-label="Angry Birds">
+  <defs>
+    <linearGradient id="g4006256341bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c2d12"/>
+      <stop offset=".58" stop-color="#f59e0b"/>
+      <stop offset="1" stop-color="#fde68a"/>
+    </linearGradient>
+    <filter id="g4006256341shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="9" flood-color="#000" flood-opacity=".38"/>
+    </filter>
+    <pattern id="g4006256341dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="2" fill="#fff" opacity=".2"/>
+    </pattern>
+  </defs>
+  <rect width="512" height="288" rx="28" fill="url(#g4006256341bg)"/>
+  <rect width="512" height="288" rx="28" fill="url(#g4006256341dots)" opacity=".7"/>
+  <circle cx="430" cy="12" r="138" fill="#fff" opacity=".16"/>
+  <circle cx="64" cy="298" r="166" fill="#000" opacity=".2"/>
+  <g filter="url(#g4006256341shadow)" transform="translate(18 -6) scale(.9)">
+    <circle cx="330" cy="148" r="76" fill="#ef2424" stroke="#111827" stroke-width="12"/><path d="M258 136c34-22 72-27 111-14" stroke="#111827" stroke-width="14" stroke-linecap="round"/><circle cx="306" cy="134" r="13" fill="#fff"/><circle cx="362" cy="134" r="13" fill="#fff"/><circle cx="310" cy="136" r="6" fill="#111827"/><circle cx="358" cy="136" r="6" fill="#111827"/><path d="M327 154l58 18-58 24z" fill="#facc15" stroke="#111827" stroke-width="9" stroke-linejoin="round"/><path d="M292 79l-26-39 47 23" fill="#ef2424" stroke="#111827" stroke-width="9" stroke-linejoin="round"/>
+  </g>
+  <rect x="25" y="24" width="168" height="38" rx="19" fill="#111827" opacity=".86"/>
+  <text x="43" y="50" font-size="18" font-family="Arial Black, Arial, sans-serif" fill="#fef3c7" letter-spacing="1.5">CROWN GAMES</text>
+  <rect x="32" y="78" width="130" height="72" rx="18" fill="#f8fafc" stroke="#111827" stroke-width="8" opacity=".92"/>
+  <text x="97" y="126" text-anchor="middle" font-size="42" font-family="Arial Black, Arial, sans-serif" fill="#111827">AB</text>
+  <text x="34" y="188" font-size="62" font-family="Impact, Arial Black, sans-serif" fill="#fff" stroke="#111827" stroke-width="7" paint-order="stroke" letter-spacing=".5">ANGRY BIRDS</text>
+</svg>

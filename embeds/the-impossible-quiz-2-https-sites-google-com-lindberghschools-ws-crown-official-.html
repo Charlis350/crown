@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<html>
+
+<head>
+	
+	
+	<title>about:blank</title>
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/gh/74m4h4/74m4h4-Assets@5cb61b353cff0365c082c9309e82bb561c027201/Run%202/waflash/waflash-style.css"
+		type="text/css">
+	<script>
+		var gameConfig = { swfUrl: "https://cdn.jsdelivr.net/gh/bubbls/UGS-file-encryption@1500a41d490b7455b4f3c8bfe2922687e18a6083/theimpossiblequiz2.swf" } 
+	</script>
+<script>
+window.CROWN_GAMES_EMBED = true;
+window.maeExportApis_ = window.maeExportApis_ || function(){};
+try {
+  if (window.parent && !window.parent.maeExportApis_) {
+    window.parent.maeExportApis_ = function(){};
+  }
+} catch (error) {}
+</script>
+<style>
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+}
+iframe, canvas, ruffle-player, #gameContainer, #unity-container, #unity-canvas {
+  width: 100%;
+  height: 100%;
+}
+</style>
+</head>
+
+<body>
+	<div id="waflashContainer"> <canvas class="waflashCanvas" id="canvas" tabindex="1"></canvas>
+		<div id="waflashStatus" style="display: none;">Playing...</div>
+		
+		<script type="module" crossorigin="anonymous">
+			let is_mobile = /Mobi/i.test(window.navigator.userAgent); if (is_mobile) { function scrollToSubject() { try { window.scrollTo({ top: 100, left: 0, behavior: 'smooth' }); } catch (e) {} } scrollToSubject(); window.addEventListener("orientationchange", function() { setTimeout(scrollToSubject, 100); }); } else { document.getElementById('canvas').focus(); } document.getElementById('canvas').addEventListener("keydown", function(ev) { ev.preventDefault(); ev.stopPropagation(); }); document.getElementById('canvas').addEventListener("click", function() { document.getElementById('canvas').focus(); }); document.addEventListener("mousedown", (function() { const canvasElement = document.getElementById('canvas'); let focused = false; return function(ev) { if (ev.target == canvasElement) { if (!focused) { canvasElement.focus(); focused = true; } } else { if (focused) { focused = false; } } return true; } })()); import { createWaflash } from 'https://cdn.jsdelivr.net/gh/zhit73/wafedit@badeade9f58a3987043cdcc12c863c0b2eb3de01/wasm/waflash-player.min.js'; createWaflash(gameConfig.swfUrl, window.wafOptions || {}); 
+		</script>
+	</div>
+	<script src="https://cdn.jsdelivr.net/gh/st39/sdk@main/api.js"></script>
+</body>
+
+</html>

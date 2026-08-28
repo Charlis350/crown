@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Forces the content to fill the Google Sites container */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            border: none;
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+<script>
+window.CROWN_GAMES_EMBED = true;
+window.maeExportApis_ = window.maeExportApis_ || function(){};
+try {
+  if (window.parent && !window.parent.maeExportApis_) {
+    window.parent.maeExportApis_ = function(){};
+  }
+} catch (error) {}
+</script>
+<style>
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+}
+iframe, canvas, ruffle-player, #gameContainer, #unity-container, #unity-canvas {
+  width: 100%;
+  height: 100%;
+}
+</style>
+</head>
+<body>
+    <!-- The source link is directly inside this iframe tag below -->
+    <iframe 
+        src="https://null-nova-dev.github.io/PPFN-Static/html-games/" 
+        allowfullscreen>
+    </iframe>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tanuki Sunset</title>
+<script>
+window.CROWN_GAMES_EMBED = true;
+window.maeExportApis_ = window.maeExportApis_ || function(){};
+try {
+  if (window.parent && !window.parent.maeExportApis_) {
+    window.parent.maeExportApis_ = function(){};
+  }
+} catch (error) {}
+</script>
+<style>
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+}
+iframe, canvas, ruffle-player, #gameContainer, #unity-container, #unity-canvas {
+  width: 100%;
+  height: 100%;
+}
+</style>
+</head>
+<body>
+<!-- Ultimate Game Stash file--> 
+<!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->
+
+
+
+<link rel="stylesheet" href="https://rawcdn.githack.com/Jokarcana/Tanuki-Sunset/a5b13b1279016c9bd123f06a4886b5987fa06dc5/TemplateData/style.css"> <script src="https://rawcdn.githack.com/Jokarcana/Tanuki-Sunset/a5b13b1279016c9bd123f06a4886b5987fa06dc5/TemplateData/UnityProgress.js"></script> <script src="https://rawcdn.githack.com/Jokarcana/Tanuki-Sunset/a5b13b1279016c9bd123f06a4886b5987fa06dc5/Build/UnityLoader.js"></script> <script> var gameInstance = UnityLoader.instantiate("gameContainer", "https://rawcdn.githack.com/Jokarcana/Tanuki-Sunset/a5b13b1279016c9bd123f06a4886b5987fa06dc5/Build/WebGL.json", {onProgress: UnityProgress,Module:{onRuntimeInitialized: function() {UnityProgress(gameInstance, "complete")}}}); </script> <script src=""></script> <div class="webgl-content"> <div id="gameContainer" style="width: 100vw; height: 100vh"></div> </div>
+</body>
+</html>

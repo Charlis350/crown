@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crown Games</title>
+  <meta name="description" content="Crown Games, a fast mobile-first game vault with Crown-local launch pages.">
+  <meta name="theme-color" content="#15120d">
+  <meta name="application-name" content="Crown Games">
+  <meta name="apple-mobile-web-app-title" content="Crown Games">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="icon" href="favicon.ico?v=20260518-mobile-final" sizes="any">
+  <link rel="shortcut icon" href="favicon.ico?v=20260518-mobile-final">
+  <link rel="icon" href="assets/site-icon.svg?v=20260518-mobile-final" type="image/svg+xml">
+  <link rel="icon" href="favicon.png?v=20260518-mobile-final" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/site-icon-180.png?v=20260518-mobile-final">
+  <link rel="manifest" href="site.webmanifest?v=20260518-mobile-final">
+  <link rel="preload" href="data/games.js?v=20260518-mobile-final" as="script">
+  <link rel="preload" href="assets/crown-logo.svg?v=20260518-mobile-final" as="image">
+  <link rel="stylesheet" href="styles.css?v=20260518-mobile-final">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Crown Games home">
+      <img src="assets/crown-logo.svg" alt="Crown Games">
+      <span>Crown Games</span>
+    </a>
+    <label class="search-wrap" aria-label="Search games">
+      <input id="search" type="search" placeholder="Search Crown Games..." autocomplete="off">
+      <span class="search-icon">/</span>
+    </label>
+    <nav class="nav" id="categoryNav" aria-label="Game categories"></nav>
+    <button id="settingsButton" class="settings-button" type="button" aria-haspopup="dialog">Settings</button>
+  </header>
+
+  <main>
+    <section class="trending-searches" aria-label="Trending searches">
+      <strong>Trending Searches</strong>
+      <div id="trendChips" class="trend-chips"></div>
+    </section>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Crown Official</p>
+        <h1>Crown <span>Games</span></h1>
+        <p>Play Crown games instantly on mobile. Crown-local launch files open inside the Crown player without sending you to another site.</p>
+        <p class="mode-note" id="modeNote">Checking iPad-ready games...</p>
+        <a class="start-button" href="#allGamesSection">Start Playing</a>
+      </div>
+      <div class="hero-gallery" aria-hidden="true">
+        <div class="hero-column"><div class="hero-track" data-track="0"></div></div>
+        <div class="hero-column"><div class="hero-track reverse" data-track="1"></div></div>
+        <div class="hero-column"><div class="hero-track" data-track="2"></div></div>
+      </div>
+      <div class="stats"><strong id="gameCount">0</strong><span>iPad-ready games</span></div>
+    </section>
+
+    <section class="section-block" id="trendingBlock">
+      <h2><span class="section-marker"></span>Popular Games</h2>
+      <div class="grid compact-grid" id="trendingGrid"></div>
+    </section>
+
+    <section class="section-block" id="latestBlock">
+      <h2><span class="section-marker"></span>Fresh Picks</h2>
+      <div class="grid compact-grid" id="latestGrid"></div>
+    </section>
+
+    <section class="section-block apps-section" id="appsSection">
+      <h2><span class="section-marker"></span>Apps</h2>
+      <div class="app-grid" id="appsGrid"></div>
+    </section>
+
+    <section class="section-block all-games" id="allGamesSection">
+      <h2><span class="section-marker"></span><span id="resultsTitle">All Games</span></h2>
+      <div class="grid" id="allGrid"></div>
+    </section>
+  </main>
+
+  <footer class="credit-footer">
+    <p>&copy; 2026 Crown Games. Made by Wes &amp; Mason.</p>
+  </footer>
+
+  <div id="launchLoader" class="game-loader launch-loader" hidden aria-live="polite" aria-label="Loading game">
+    <div class="loader-card">
+      <span class="loader-ring"></span>
+      <span class="loader-icon">
+        <img id="launchLoaderIcon" src="assets/crown-logo.svg" alt="">
+      </span>
+      <strong id="launchLoaderTitle">Loading Crown Game</strong>
+      <small>getting the game ready</small>
+    </div>
+  </div>
+
+  <script src="settings.js?v=20260518-mobile-final"></script>
+  <script src="apps/catalog.js?v=20260518-mobile-final"></script>
+  <script src="data/games.js?v=20260518-mobile-final"></script>
+  <script src="script.js?v=20260518-mobile-final"></script>
+</body>
+</html>

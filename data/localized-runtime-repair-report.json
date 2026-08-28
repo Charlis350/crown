@@ -1,0 +1,265 @@
+{
+  "results": [
+    {
+      "slug": "3d-car-simulator",
+      "added": 2,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 54.24
+    },
+    {
+      "slug": "arcane-archer",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 3.12
+    },
+    {
+      "slug": "archer-master-3d-castle-defense",
+      "added": 2,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 52.23
+    },
+    {
+      "slug": "bacon-may-die",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 6.19
+    },
+    {
+      "slug": "bad-ice-cream-3",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 6.41
+    },
+    {
+      "slug": "basketball-stars",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 4.51
+    },
+    {
+      "slug": "big-shot-boxing",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 6.37
+    },
+    {
+      "slug": "bossy-toss",
+      "added": 2,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 55.45
+    },
+    {
+      "slug": "boxing-physics-2",
+      "added": 2,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 40.89
+    },
+    {
+      "slug": "cars-thief",
+      "added": 2,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 52.76
+    },
+    {
+      "slug": "cluster-rush",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 1.55
+    },
+    {
+      "slug": "demolition-derby-crash-racing",
+      "added": 2,
+      "missing": 1,
+      "missingSamples": [
+        {
+          "remote": "https://ubgwtf.gitlab.io/demolition-derby-crash-racing/Build/Poki.jpg",
+          "local": "embeds/class6x-local/demolition-derby-crash-racing/Build/Poki.jpg",
+          "error": "Command failed: curl.exe --ssl-no-revoke --fail -L --compressed --connect-timeout 10 --max-time 60 -sS -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) CrownGamesRuntimeRepair/1.0 https://ubgwtf.gitlab.io/demolition-derby-crash-racing/Build/Poki.jpg\ncurl: (22) The requested URL returned error: 404\r\n"
+        }
+      ],
+      "sizeMb": 45.03
+    },
+    {
+      "slug": "diggy",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 23.92
+    },
+    {
+      "slug": "dragon-simulator-3d",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 69.94
+    },
+    {
+      "slug": "drunken-boxing-2",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 25.76
+    },
+    {
+      "slug": "duck-life-4",
+      "added": 1,
+      "missing": 2,
+      "missingSamples": [
+        {
+          "remote": "https://tbg95.pages.dev/ducklife-4/WebGL4PokiNew.data.unityweb",
+          "local": "embeds/class6x-local/duck-life-4/Build/WebGL4PokiNew.data.unityweb",
+          "error": "Command failed: curl.exe --ssl-no-revoke --fail -L --compressed --connect-timeout 10 --max-time 60 -sS -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) CrownGamesRuntimeRepair/1.0 https://tbg95.pages.dev/ducklife-4/WebGL4PokiNew.data.unityweb\ncurl: (22) The requested URL returned error: 404\r\n"
+        },
+        {
+          "remote": "https://tbg95.pages.dev/ducklife-4/WebGL4PokiNew.asm.code.unityweb",
+          "local": "embeds/class6x-local/duck-life-4/Build/WebGL4PokiNew.asm.code.unityweb",
+          "error": "Command failed: curl.exe --ssl-no-revoke --fail -L --compressed --connect-timeout 10 --max-time 60 -sS -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) CrownGamesRuntimeRepair/1.0 https://tbg95.pages.dev/ducklife-4/WebGL4PokiNew.asm.code.unityweb\ncurl: (22) The requested URL returned error: 404\r\n"
+        }
+      ],
+      "sizeMb": 2.67
+    },
+    {
+      "slug": "fleeing-the-complex",
+      "added": 0,
+      "missing": 1,
+      "missingSamples": [
+        {
+          "remote": "https://ubgwtf.gitlab.io/fleeing-the-complex/js/AVM1Player.js",
+          "local": "embeds/class6x-local/fleeing-the-complex/js/AVM1Player.js",
+          "error": "Command failed: curl.exe --ssl-no-revoke --fail -L --compressed --connect-timeout 10 --max-time 60 -sS -A Mozilla/5.0 (Windows NT 10.0; Win64; x64) CrownGamesRuntimeRepair/1.0 https://ubgwtf.gitlab.io/fleeing-the-complex/js/AVM1Player.js\ncurl: (22) The requested URL returned error: 404\r\n"
+        }
+      ],
+      "sizeMb": 32.97
+    },
+    {
+      "slug": "flip-bros",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 2.18
+    },
+    {
+      "slug": "football-masters",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 4.19
+    },
+    {
+      "slug": "fox-simulator-3d",
+      "added": 5,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 59.33
+    },
+    {
+      "slug": "g-switch-4",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 2.53
+    },
+    {
+      "slug": "geometry-dash",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 3.16
+    },
+    {
+      "slug": "hide-and-smash",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 3.69
+    },
+    {
+      "slug": "horse-simulator-3d",
+      "added": 2,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 79.28
+    },
+    {
+      "slug": "hover-racer-drive",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 3.97
+    },
+    {
+      "slug": "idle-digging-tycoon",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 0.5
+    },
+    {
+      "slug": "moto-x3m-winter",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 4.58
+    },
+    {
+      "slug": "ovo",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 5.36
+    },
+    {
+      "slug": "puppet-master",
+      "added": 2,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 44.93
+    },
+    {
+      "slug": "retro-bowl",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 5.37
+    },
+    {
+      "slug": "rio-rex",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 58.33
+    },
+    {
+      "slug": "rowdy-city-wrestling",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 7.65
+    },
+    {
+      "slug": "soccer-random",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 1.26
+    },
+    {
+      "slug": "stick-fighter",
+      "added": 0,
+      "missing": 0,
+      "missingSamples": [],
+      "sizeMb": 2.61
+    }
+  ]
+}

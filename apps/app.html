@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crown Apps</title>
+  <meta name="theme-color" content="#0b0a12">
+  <link rel="icon" href="../favicon.ico?v=20260518-mobile-final" sizes="any">
+  <link rel="stylesheet" href="../styles.css?v=20260518-mobile-final">
+  <style>
+    body.app-page {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% 0, rgba(124,58,237,.28), transparent 26rem),
+        radial-gradient(circle at 82% 10%, rgba(255,212,71,.14), transparent 28rem),
+        #0b0a12;
+      color: #fff;
+      font-family: "Trebuchet MS", "Gill Sans", Verdana, sans-serif;
+    }
+
+    .app-shell {
+      width: min(920px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 18px 0 90px;
+    }
+
+    .app-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .app-top a,
+    .tool button {
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 900;
+      padding: 11px 16px;
+      text-decoration: none;
+    }
+
+    .app-card-panel {
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 24px;
+      background: rgba(18,16,27,.94);
+      box-shadow: 0 28px 80px rgba(0,0,0,.38);
+      overflow: hidden;
+    }
+
+    .app-hero {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 22px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      background:
+        linear-gradient(135deg, rgba(139,92,246,.22), rgba(255,212,71,.08)),
+        #151323;
+    }
+
+    .app-hero-icon {
+      display: grid;
+      place-items: center;
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ffd447, #8b5cf6);
+      color: #111;
+      font-size: 32px;
+      font-weight: 1000;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.36);
+      overflow: hidden;
+    }
+
+    .app-hero-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .app-hero h1 {
+      margin: 0;
+      font-size: clamp(30px, 7vw, 58px);
+      line-height: .94;
+    }
+
+    .app-hero p {
+      margin: 8px 0 0;
+      color: #c9c2d9;
+      font-weight: 800;
+    }
+
+    .tool {
+      display: grid;
+      gap: 14px;
+      padding: 20px;
+    }
+
+    .tool input,
+    .tool textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 16px;
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      font: inherit;
+      font-weight: 800;
+      padding: 13px 14px;
+      outline: none;
+    }
+
+    .tool textarea {
+      min-height: 260px;
+      resize: vertical;
+    }
+
+    .tool-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .result,
+    .saved-list {
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      color: #f8f7ff;
+      padding: 14px;
+      font-weight: 900;
+    }
+
+    .draw-pad {
+      width: 100%;
+      height: min(62vh, 460px);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 18px;
+      background: #fff;
+      touch-action: none;
+    }
+
+    .web-frame-wrap {
+      display: grid;
+      gap: 12px;
+    }
+
+    .web-app-frame {
+      width: 100%;
+      height: min(72vh, 720px);
+      min-height: 520px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 18px;
+      background: #050505;
+      display: block;
+    }
+
+    .app-warning {
+      color: #c9c2d9;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .wip-panel {
+      display: grid;
+      gap: 12px;
+      border: 1px solid rgba(255, 212, 71, .22);
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg, rgba(255, 212, 71, .14), rgba(139, 92, 246, .12)),
+        rgba(255,255,255,.05);
+      padding: 18px;
+    }
+
+    .wip-panel strong {
+      color: #ffd447;
+      font-size: clamp(24px, 8vw, 42px);
+      line-height: .95;
+    }
+
+    .wip-panel p {
+      margin: 0;
+      color: #efeaff;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .wip-panel code {
+      overflow-wrap: anywhere;
+      color: #c4b5fd;
+      font-weight: 900;
+    }
+
+    .timer-display {
+      font-size: clamp(42px, 14vw, 108px);
+      font-weight: 1000;
+      letter-spacing: -0.06em;
+      color: #ffd447;
+    }
+
+    .saved-list article {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+
+    .saved-list article:first-child {
+      border-top: 0;
+    }
+  </style>
+</head>
+<body class="app-page">
+  <main class="app-shell">
+    <div class="app-top">
+      <a href="../index.html">Back to Crown Games</a>
+      <strong>Crown Apps</strong>
+    </div>
+    <section class="app-card-panel">
+      <header class="app-hero">
+        <span class="app-hero-icon" id="heroIcon">C</span>
+        <div>
+          <h1 id="appTitle">Crown App</h1>
+          <p id="appDescription">A local Crown utility.</p>
+        </div>
+      </header>
+      <div class="tool" id="tool"></div>
+    </section>
+  </main>
+
+  <script src="catalog.js?v=20260518-mobile-final"></script>
+  <script>
+    const CUSTOM_APPS_KEY = "crownCustomAppsV1";
+    const NOTES_KEY = "crownNotesV1";
+    const CHECKLIST_KEY = "crownChecklistV1";
+    const params = new URLSearchParams(location.search);
+    const appId = params.get("app") || "create";
+    const catalogApps = Array.isArray(window.CROWN_APPS) ? window.CROWN_APPS : [];
+    const appById = Object.fromEntries(catalogApps.map((app) => [app.id, app]));
+    const utilityApps = {
+      notes: { id: "notes", icon: "N", title: "Notes", description: "A quick saved notes pad.", localTool: "notes" },
+      calculator: { id: "calculator", icon: "C", title: "Calculator", description: "Simple calculator for fast math.", localTool: "calculator" },
+      draw: { id: "draw", icon: "D", title: "Draw", description: "Sketch pad with touch support.", localTool: "draw" },
+      timer: { id: "timer", icon: "T", title: "Timer", description: "Stopwatch and timer controls.", localTool: "timer" },
+      checklist: { id: "checklist", icon: "L", title: "Checklist", description: "Save small task lists locally.", localTool: "checklist" }
+    };
+    const tool = document.getElementById("tool");
+
+    function loadJson(key, fallback) {
+      try {
+        return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback));
+      } catch (error) {
+        return fallback;
+      }
+    }
+
+    function saveJson(key, value) {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+
+    function customApps() {
+      const apps = loadJson(CUSTOM_APPS_KEY, []);
+      return Array.isArray(apps) ? apps : [];
+    }
+
+    function safeHtml(value = "") {
+      return String(value).replace(/[&<>"']/g, (ch) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      })[ch]);
+    }
+
+    function setHeader(app) {
+      const colors = app.colors || ["#ffd447", "#8b5cf6"];
+      const icon = app.icon || "C";
+      const title = app.title || "Crown App";
+      const description = app.description || "A local Crown utility.";
+      const heroIcon = document.getElementById("heroIcon");
+      const logo = app.logo ? (app.logo.startsWith("http") ? app.logo : "../" + app.logo.replace(/^\/+/, "")) : "";
+      heroIcon.textContent = "";
+      if (logo) {
+        const image = document.createElement("img");
+        image.src = logo + (logo.includes("?") ? "&" : "?") + "v=20260518-mobile-final";
+        image.alt = "";
+        heroIcon.appendChild(image);
+      } else {
+        heroIcon.textContent = String(icon).slice(0, 4).toUpperCase();
+      }
+      heroIcon.style.background = "linear-gradient(135deg, " + colors[0] + ", " + (colors[1] || colors[0]) + ")";
+      document.getElementById("appTitle").textContent = title;
+      document.getElementById("appDescription").textContent = description;
+      document.title = title + " - Crown Apps";
+    }
+
+    function renderCreate() {
+      const saved = customApps();
+      tool.innerHTML =
+        '<input id="newTitle" placeholder="App name">' +
+        '<input id="newDescription" placeholder="Short description">' +
+        '<input id="newIcon" maxlength="2" placeholder="Icon letters, like TV">' +
+        '<input id="newUrl" inputmode="url" placeholder="Optional web app URL, like https://example.com">' +
+        '<div class="tool-row"><input id="newColorA" placeholder="Color 1, like #8b5cf6"><input id="newColorB" placeholder="Color 2, like #ffd447"></div>' +
+        '<div class="tool-row"><button id="saveApp" type="button">Save App</button></div>' +
+        '<div class="saved-list" id="savedApps">' +
+        (saved.length ? saved.map((app) => '<article><span><strong>' + safeHtml(app.title) + '</strong><br><small>' + safeHtml(app.description) + '</small></span><a href="?app=' + encodeURIComponent(app.id) + '">Open</a></article>').join("") : "No custom apps yet.") +
+        "</div>";
+      document.getElementById("saveApp").addEventListener("click", () => {
+        const title = document.getElementById("newTitle").value.trim();
+        if (!title) return;
+        const description = document.getElementById("newDescription").value.trim() || "Custom Crown app.";
+        const icon = document.getElementById("newIcon").value.trim() || title.slice(0, 1);
+        const url = document.getElementById("newUrl").value.trim();
+        const colorA = document.getElementById("newColorA").value.trim() || "#8b5cf6";
+        const colorB = document.getElementById("newColorB").value.trim() || "#ffd447";
+        const id = "custom-" + Date.now().toString(36);
+        saveJson(CUSTOM_APPS_KEY, [...customApps(), { id, title, description, icon, url, colors: [colorA, colorB] }]);
+        renderCreate();
+      });
+    }
+
+    function renderNotes() {
+      tool.innerHTML = '<textarea id="notes" placeholder="Type notes here..."></textarea><div class="result">Saved automatically on this browser.</div>';
+      const notes = document.getElementById("notes");
+      notes.value = localStorage.getItem(NOTES_KEY) || "";
+      notes.addEventListener("input", () => localStorage.setItem(NOTES_KEY, notes.value));
+    }
+
+    function renderCalculator() {
+      tool.innerHTML = '<input id="calc" inputmode="decimal" placeholder="Example: (18 + 24) / 2"><div class="tool-row"><button id="runCalc" type="button">Calculate</button></div><div class="result" id="calcResult">Answer shows here.</div>';
+      document.getElementById("runCalc").addEventListener("click", () => {
+        const expression = document.getElementById("calc").value.trim();
+        const result = document.getElementById("calcResult");
+        if (!/^[0-9+\-*/(). %]+$/.test(expression)) {
+          result.textContent = "Only numbers and math symbols are allowed.";
+          return;
+        }
+        try {
+          result.textContent = String(Function("return (" + expression + ")")());
+        } catch (error) {
+          result.textContent = "Could not calculate that.";
+        }
+      });
+    }
+
+    function renderDraw() {
+      tool.innerHTML = '<canvas class="draw-pad" id="drawPad"></canvas><div class="tool-row"><button id="clearDraw" type="button">Clear</button></div>';
+      const canvas = document.getElementById("drawPad");
+      const context = canvas.getContext("2d");
+      let drawing = false;
+      function resize() {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = Math.max(320, Math.floor(rect.width * devicePixelRatio));
+        canvas.height = Math.max(260, Math.floor(rect.height * devicePixelRatio));
+        context.scale(devicePixelRatio, devicePixelRatio);
+        context.lineWidth = 5;
+        context.lineCap = "round";
+        context.strokeStyle = "#111827";
+      }
+      function point(event) {
+        const rect = canvas.getBoundingClientRect();
+        return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+      }
+      resize();
+      window.addEventListener("resize", resize);
+      canvas.addEventListener("pointerdown", (event) => {
+        drawing = true;
+        canvas.setPointerCapture(event.pointerId);
+        const p = point(event);
+        context.beginPath();
+        context.moveTo(p.x, p.y);
+      });
+      canvas.addEventListener("pointermove", (event) => {
+        if (!drawing) return;
+        const p = point(event);
+        context.lineTo(p.x, p.y);
+        context.stroke();
+      });
+      canvas.addEventListener("pointerup", () => drawing = false);
+      canvas.addEventListener("pointercancel", () => drawing = false);
+      document.getElementById("clearDraw").addEventListener("click", () => context.clearRect(0, 0, canvas.width, canvas.height));
+    }
+
+    function renderTimer() {
+      let elapsed = 0;
+      let started = 0;
+      let tick = 0;
+      tool.innerHTML = '<div class="timer-display" id="timerDisplay">00:00.0</div><div class="tool-row"><button id="startTimer" type="button">Start</button><button id="pauseTimer" type="button">Pause</button><button id="resetTimer" type="button">Reset</button></div>';
+      const display = document.getElementById("timerDisplay");
+      function paint() {
+        const total = elapsed + (started ? performance.now() - started : 0);
+        const minutes = Math.floor(total / 60000).toString().padStart(2, "0");
+        const seconds = Math.floor((total % 60000) / 1000).toString().padStart(2, "0");
+        const tenth = Math.floor((total % 1000) / 100);
+        display.textContent = minutes + ":" + seconds + "." + tenth;
+      }
+      document.getElementById("startTimer").addEventListener("click", () => {
+        if (started) return;
+        started = performance.now();
+        tick = setInterval(paint, 80);
+      });
+      document.getElementById("pauseTimer").addEventListener("click", () => {
+        if (started) elapsed += performance.now() - started;
+        started = 0;
+        clearInterval(tick);
+        paint();
+      });
+      document.getElementById("resetTimer").addEventListener("click", () => {
+        elapsed = 0;
+        started = 0;
+        clearInterval(tick);
+        paint();
+      });
+    }
+
+    function renderChecklist() {
+      let items = loadJson(CHECKLIST_KEY, []);
+      function paint() {
+        tool.innerHTML = '<div class="tool-row"><input id="itemText" placeholder="Add an item"><button id="addItem" type="button">Add</button></div><div class="saved-list">' +
+          (items.length ? items.map((item, index) => '<article><label><input type="checkbox" data-index="' + index + '"' + (item.done ? " checked" : "") + '> ' + safeHtml(item.text) + '</label><button type="button" data-remove="' + index + '">Remove</button></article>').join("") : "No checklist items yet.") +
+          "</div>";
+        document.getElementById("addItem").addEventListener("click", () => {
+          const input = document.getElementById("itemText");
+          if (!input.value.trim()) return;
+          items.push({ text: input.value.trim(), done: false });
+          saveJson(CHECKLIST_KEY, items);
+          paint();
+        });
+      }
+      tool.addEventListener("change", (event) => {
+        const checkbox = event.target.closest("input[data-index]");
+        if (!checkbox) return;
+        items[Number(checkbox.dataset.index)].done = checkbox.checked;
+        saveJson(CHECKLIST_KEY, items);
+      });
+      tool.addEventListener("click", (event) => {
+        const remove = event.target.closest("button[data-remove]");
+        if (!remove) return;
+        items.splice(Number(remove.dataset.remove), 1);
+        saveJson(CHECKLIST_KEY, items);
+        paint();
+      });
+      paint();
+    }
+
+    function renderWebApp(app) {
+      if (!app.url) {
+        tool.innerHTML = '<div class="result">This app is saved as a Crown card, but it does not have a launch URL yet.</div>';
+        return;
+      }
+      let url;
+      try {
+        url = new URL(app.url);
+        if (!/^https?:$/.test(url.protocol)) throw new Error("Bad protocol");
+      } catch (error) {
+        tool.innerHTML = '<div class="result">This app URL is not available.</div>';
+        return;
+      }
+      tool.innerHTML =
+        '<div class="wip-panel">' +
+        '<strong>WIP</strong>' +
+        '<p>This app card is set up with the real app icon, but the launcher is WIP because most app websites block being loaded inside another site on mobile.</p>' +
+        '<p>Target: <code>' + safeHtml(url.hostname) + '</code></p>' +
+        '<p class="app-warning">The local Crown tools and game player still work. This keeps the page from showing a broken black iframe and makes the app state honest.</p>' +
+        "</div>";
+    }
+
+    function renderCustom(app) {
+      renderWebApp(app);
+    }
+
+    const custom = customApps().find((app) => app.id === appId);
+    const currentApp = custom || appById[appId] || utilityApps[appId] || appById.create || { id: "create", icon: "+", title: "Create Custom App", description: "Make a local Crown app card.", localTool: "create" };
+    setHeader(currentApp);
+    if (custom) renderCustom(custom);
+    else if (currentApp.localTool === "notes") renderNotes();
+    else if (currentApp.localTool === "calculator") renderCalculator();
+    else if (currentApp.localTool === "draw") renderDraw();
+    else if (currentApp.localTool === "timer") renderTimer();
+    else if (currentApp.localTool === "checklist") renderChecklist();
+    else if (currentApp.localTool === "create") renderCreate();
+    else renderWebApp(currentApp);
+
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest && event.target.closest("a[href]");
+      if (!link) return;
+      const url = new URL(link.getAttribute("href"), location.href);
+      if (url.origin === location.origin) return;
+      event.preventDefault();
+      event.stopPropagation();
+    }, true);
+  </script>
+</body>
+</html>
