@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "crown",
+  "compatibility_date": "2026-08-28",
+  "assets": {
+    "directory": ".",
+    "exclude": [
+      "embeds/class6x-local/rio-rex/Build/webgl_poki4.asm.code.unityweb"
+    ]
+  }
+}
