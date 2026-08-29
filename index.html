@@ -18,9 +18,14 @@
   <link rel="preload" href="data/games.js?v=20260518-mobile-final" as="script">
   <link rel="preload" href="assets/crown-logo.svg?v=20260518-mobile-final" as="image">
   <link rel="stylesheet" href="styles.css?v=20260518-mobile-final">
+  <link rel="stylesheet" href="snowfall-patch.css?v=20260601-snow">
 </head>
 <body>
   <header class="topbar">
+    <button id="crownSidebarToggle" type="button" aria-expanded="false" aria-controls="crownSidebar" aria-label="Open sidebar">
+      <span class="sidebar-toggle-icon">❄</span>
+      <span>Menu</span>
+    </button>
     <a class="brand" href="index.html" aria-label="Crown Games home">
       <img src="assets/crown-logo.svg" alt="Crown Games">
       <span>Crown Games</span>
@@ -32,6 +37,70 @@
     <nav class="nav" id="categoryNav" aria-label="Game categories"></nav>
     <button id="settingsButton" class="settings-button" type="button" aria-haspopup="dialog">Settings</button>
   </header>
+
+  <!-- Sidebar backdrop -->
+  <div id="crownSidebarBackdrop" aria-hidden="true"></div>
+
+  <!-- Slide-in sidebar -->
+  <aside id="crownSidebar" aria-label="Crown sidebar" aria-hidden="true">
+    <div class="sidebar-header">
+      <div class="sidebar-header-title">
+        <span>❄</span> Crown Menu
+      </div>
+      <button class="sidebar-close" id="crownSidebarClose" aria-label="Close sidebar">✕</button>
+    </div>
+    <div class="sidebar-body">
+
+      <!-- Favorites -->
+      <div class="sidebar-section" id="sidebarFavSection">
+        <div class="sidebar-section-head">
+          <span class="ss-icon">⭐</span> Favorites
+        </div>
+        <div class="sidebar-fav-list" id="sidebarFavList">
+          <p class="sidebar-fav-empty">Star a game to save it here.</p>
+        </div>
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <!-- Quick Actions -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-head">
+          <span class="ss-icon">⚡</span> Quick Actions
+        </div>
+        <div class="sidebar-actions-list">
+          <button class="sidebar-action-btn" id="sidebarActionRandom">
+            <span class="sidebar-action-icon">🎲</span> Random Game
+          </button>
+          <button class="sidebar-action-btn" id="sidebarActionTop">
+            <span class="sidebar-action-icon">🔥</span> Top Rated
+          </button>
+          <button class="sidebar-action-btn" id="sidebarActionNew">
+            <span class="sidebar-action-icon">🆕</span> Fresh Picks
+          </button>
+          <button class="sidebar-action-btn" id="sidebarActionClearFavs">
+            <span class="sidebar-action-icon">🗑</span> Clear Favorites
+          </button>
+          <button class="sidebar-action-btn" id="sidebarActionSettings">
+            <span class="sidebar-action-icon">⚙️</span> Settings
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <!-- Bonus Games -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-head">
+          <span class="ss-icon">🎁</span> Bonus Games
+        </div>
+        <div class="sidebar-bonus-list" id="sidebarBonusList">
+          <!-- Populated by JS from the catalog -->
+        </div>
+      </div>
+
+    </div>
+  </aside>
 
   <main>
     <section class="trending-searches" aria-label="Trending searches">
@@ -95,5 +164,6 @@
   <script src="apps/catalog.js?v=20260518-mobile-final"></script>
   <script src="data/games.js?v=20260518-mobile-final"></script>
   <script src="script.js?v=20260518-mobile-final"></script>
+  <script src="crown-sidebar.js?v=20260601-snow"></script>
 </body>
 </html>
